@@ -22,6 +22,8 @@ public class PlayerScript : MonoBehaviour
 
     public int timeSpentEligible = 0;
 
+    public TMP_Text ime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,8 @@ public class PlayerScript : MonoBehaviour
         EloText.text = EloText.text + " " + Elo;
 
         PingText.text = PingText.text + " " + ping;
+
+        ime.text = this.name;
 
 
         //generate random ping spikes

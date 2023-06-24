@@ -20,11 +20,16 @@ public class StartQueue : MonoBehaviour
     public GameObject BLUtim;
 
     public GameObject REDtim;
+
+    public GameObject InfoScreen;
+
+    private InfoScreen skriptaInfoScreen;
     // Start is called before the first frame update
     void Start()
     {
         started = false;
         QSignRenderer = QSign.GetComponent<TMP_Text>();
+        skriptaInfoScreen = InfoScreen.GetComponent<InfoScreen>();
     }
 
     // Update is called once per frame
@@ -55,20 +60,7 @@ public class StartQueue : MonoBehaviour
 
     }
 
-    void TimeTick() 
-    {
-
-        foreach (Transform trans in QueuedPlayers.transform) {
-                
-                PlayerScript dummyScript = trans.GetComponent<PlayerScript>();
-
-                dummyScript.vrijeme += 1;
-                dummyScript.VrijemeText.text = "Vrijeme: " + dummyScript.vrijeme;
-                
-            }
-        
-
-    }
+    
 
     public float EloTimeScale = 1;
     public float PingTimeScale = 1;
@@ -83,6 +75,26 @@ public class StartQueue : MonoBehaviour
     public GameObject MatchInstance;
 
     public int timeRequirementForMatch = 6;
+
+
+    void TimeTick() 
+    {
+
+        skriptaInfoScreen.UpdateScreen();
+
+        foreach (Transform trans in QueuedPlayers.transform) {
+                
+                PlayerScript dummyScript = trans.GetComponent<PlayerScript>();
+
+                dummyScript.vrijeme += 1;
+                dummyScript.VrijemeText.text = "Vrijeme: " + dummyScript.vrijeme;
+                
+            }
+        
+
+        
+
+    }
 
     void Matchmaker() 
     {
@@ -105,12 +117,12 @@ public class StartQueue : MonoBehaviour
 
                     //provjera visokog pinga
                     if (player1.ping > 150) {
-                        Debug.Log(trans1.name + " has a high ping, redirecting");
+                        Debug.Log(trans1.name + " ima visoko kanjenje obilaska, preusmjeravanje na drugi server");
                         trans1.SetParent(NonQueuedPlayers.transform);
                     }
 
                     if (player2.ping > 150) {
-                        Debug.Log(trans2.name + " has a high ping, redirecting");
+                        Debug.Log(trans2.name + " ima visoko kanjenje obilaska, preusmjeravanje na drugi server");
                         trans2.SetParent(NonQueuedPlayers.transform);
                     }
 
@@ -209,7 +221,7 @@ public class StartQueue : MonoBehaviour
 
                 int zbrojVremena = player1.Key.GetComponent<PlayerScript>().timeSpentEligible + player1.Value[najboljiPartnerIndex].GetComponent<PlayerScript>().timeSpentEligible;
 
-                if (zbrojVremena >= 8) {
+                if (zbrojVremena >= timeRequirementForMatch) {
 
                     //Matchaj ekipu
                     player1.Key.SetParent(REDtim.transform);

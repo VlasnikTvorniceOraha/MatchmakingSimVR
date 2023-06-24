@@ -25,7 +25,7 @@ public class ChangeValues : MonoBehaviour
 
     public void Change() 
     {
-        Debug.Log(EloTextInput.GetComponent<TMP_InputField>().text);
+        //Debug.Log(EloTextInput.GetComponent<TMP_InputField>().text);
 
         if (EloTextInput.GetComponent<TMP_InputField>().text != "") {
 

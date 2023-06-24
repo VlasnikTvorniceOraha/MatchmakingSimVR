@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SpawnPlayer : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class SpawnPlayer : MonoBehaviour
 
     public int SpawnCounter = 1;
 
+    public TMP_Dropdown igraciDropdown;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,13 +36,19 @@ public class SpawnPlayer : MonoBehaviour
 
     public void Stvori() 
     {
+        //instanciraj igraca
         playerClone = Instantiate(player);
         playerClone.transform.SetParent(NonQueuedPlayers, false);
-        playerClone.transform.position = location.transform.position;
+        
         //Instantiate(player, parent, false);
-        playerClone.name = SpawnCounter.ToString();
+        playerClone.name = "Igrac " + SpawnCounter.ToString();
         SpawnCounter += 1;
         
+        //pronadi mjesto za igraca
+        
+        
+
+        playerClone.transform.position = location.transform.position;
         location.transform.position = location.transform.position + new Vector3(-2, 0, 0);
         
         
@@ -47,6 +57,16 @@ public class SpawnPlayer : MonoBehaviour
 
         //klonovi.Add(playerClone);
 
+        //dodaj ga na dropdown igraca
+
+        //TMP_Dropdown.OptionData playerOption;
+
+
+        List<string> opcije = new List<string>();
+
+        opcije.Add(playerClone.name);
+
+        igraciDropdown.AddOptions(opcije);
 
 
 
