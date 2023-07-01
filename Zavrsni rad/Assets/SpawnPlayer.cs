@@ -20,6 +20,8 @@ public class SpawnPlayer : MonoBehaviour
 
     public TMP_Dropdown igraciDropdown;
 
+    public GameObject VisualizerDummy;
+
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +69,8 @@ public class SpawnPlayer : MonoBehaviour
         opcije.Add(playerClone.name);
 
         igraciDropdown.AddOptions(opcije);
+
+        //Stvaranje visualizer dummya
 
 
 

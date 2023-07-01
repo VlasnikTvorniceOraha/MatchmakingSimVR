@@ -24,6 +24,8 @@ public class StartQueue : MonoBehaviour
     public GameObject InfoScreen;
 
     private InfoScreen skriptaInfoScreen;
+
+    private string TipReda = "Normalni";
     // Start is called before the first frame update
     void Start()
     {
@@ -42,19 +44,34 @@ public class StartQueue : MonoBehaviour
     {
         
         if (started) {
-            CancelInvoke("Matchmaker");
-            //CAncelInvoke za Q
+            
             started = false;
             QSignRenderer.faceColor = Color.red;
             CancelInvoke("TimeTick");
+
+            if (TipReda == "Normalni") {
+
+                CancelInvoke("Matchmaker");
+                //CAncelInvoke za Q
+            } else if (TipReda == "Naivni") {
+                CancelInvoke("NaiveMatchmaker");
+                //CAncelInvoke za Q
+            }
         }
         else {
-            InvokeRepeating("Matchmaker", 0, 2.0f);
-            //Invokerepeating Q
+            
             started = true;
             QSignRenderer.faceColor = Color.green;
             InvokeRepeating("TimeTick", 0, 1.0f);
-            
+
+            if (TipReda == "Normalni") {
+
+                InvokeRepeating("Matchmaker", 0, 3.0f);
+                //Invokerepeating Q
+            } else if (TipReda == "Naivni") {
+                InvokeRepeating("NaiveMatchmaker", 0, 3.0f);
+            }
+
 
         }
 
@@ -68,19 +85,25 @@ public class StartQueue : MonoBehaviour
     public int baseEloDiff = 30;
     public int basePingDiff = 50;
 
-    public int brojIgracaUTimu = 1;
+   
 
     public Dictionary<Transform, List<Transform>> EligiblePlayersDict = new Dictionary<Transform, List<Transform>>();
 
     public GameObject MatchInstance;
 
-    public int timeRequirementForMatch = 6;
+    public int timeRequirementForMatch;
+
+    
 
 
     void TimeTick() 
     {
 
-        skriptaInfoScreen.UpdateScreen();
+
+        if (TipReda == "Normalni") {
+            skriptaInfoScreen.UpdateScreen();
+        }
+        
 
         foreach (Transform trans in QueuedPlayers.transform) {
                 
@@ -93,6 +116,123 @@ public class StartQueue : MonoBehaviour
         
 
         
+
+    }
+
+    public TMP_Text TipRedaText;
+
+    public void PromijeniTipReda() {
+
+        if (TipReda == "Normalni") {
+            TipReda = "Naivni";
+            TipRedaText.text = "Naivni";
+        } else {
+            TipReda = "Normalni";
+            TipRedaText.text = "Normalni";
+        }
+
+    }
+
+    private int NaiveEloDiff = 200;
+
+    public int brojIgracaUTimu = 2;
+
+    private int brojPokusaja = 3;
+
+    void NaiveMatchmaker() {
+
+        List<Transform> sviIgraci = new List<Transform>();
+        List<Transform> odabraniIgraci = new List<Transform>();
+        List<Transform> tim1 = new List<Transform>();
+        List<Transform> tim2 = new List<Transform>();
+        int tim1Elo = 0;
+        int tim2Elo = 0;
+
+        if (QueuedPlayers.transform.childCount >= brojIgracaUTimu * 2) {
+
+            foreach (Transform trans in QueuedPlayers.transform) {
+                sviIgraci.Add(trans);
+            }
+
+            //randomly odabrati igrace
+            for (int b = 0; b < brojIgracaUTimu * 2; b++) {
+
+                int randomBirac = Random.Range(0, sviIgraci.Count);
+
+                odabraniIgraci.Add(sviIgraci[randomBirac]);
+                sviIgraci.RemoveAt(randomBirac);
+
+            }
+
+            //Debug.Log(odabraniIgraci.Count);
+            //odabrati 2 najjacih igraca i smijestiti ih u svaki tim
+
+            for (int i = 0; i < 2; i++) {
+
+                int najveciElo = 0;
+                int najveciIndeks = 0;
+
+                foreach (Transform trans in odabraniIgraci) {
+
+                    PlayerScript skripta = trans.GetComponent<PlayerScript>();
+
+                    if (skripta.Elo > najveciElo) {
+                        najveciElo = skripta.Elo;
+                        najveciIndeks = odabraniIgraci.IndexOf(trans);
+                    }
+                }
+
+                if (i == 0) {
+                    tim1.Add(odabraniIgraci[najveciIndeks]);
+                    odabraniIgraci.RemoveAt(najveciIndeks);
+                    tim1Elo += najveciElo;
+                } else {
+                    tim2.Add(odabraniIgraci[najveciIndeks]);
+                    odabraniIgraci.RemoveAt(najveciIndeks);
+                    tim2Elo += najveciElo;
+                }
+
+            }
+
+            //dopuni timove sa random igracima i odredi hoce li match proci
+
+            while (odabraniIgraci.Count != 0) {
+
+                int randomBirac = Random.Range(0, odabraniIgraci.Count);
+
+                PlayerScript skripta = odabraniIgraci[randomBirac].GetComponent<PlayerScript>();
+
+                if (tim1.Count < brojIgracaUTimu) {
+                    tim1.Add(odabraniIgraci[randomBirac]);
+                    odabraniIgraci.RemoveAt(randomBirac);
+                    tim1Elo += skripta.Elo;
+
+                } else {
+                    tim2.Add(odabraniIgraci[randomBirac]);
+                    odabraniIgraci.RemoveAt(randomBirac);
+                    tim2Elo += skripta.Elo;
+
+                }
+
+            }
+
+            //sada kada imamo timove procijeni njihov average elo i razliku eloa
+            Debug.Log(tim1Elo);
+            Debug.Log(tim2Elo);
+            int ukupnaRazlikaElo = Mathf.Abs((tim1Elo / brojIgracaUTimu) - (tim2Elo / brojIgracaUTimu));
+
+            if (ukupnaRazlikaElo < NaiveEloDiff) {
+                Debug.Log("Mec prihvacen");
+            } else {
+                Debug.Log("Prevelika razlika, mec odbacen");
+            }
+            
+
+        } else {
+            Debug.Log("Premalo igraca u redu");
+        }
+
+
 
     }
 
@@ -220,7 +360,8 @@ public class StartQueue : MonoBehaviour
                 Debug.Log("Najbolji partner za " + player1.Key.name + " je " + player1.Value[najboljiPartnerIndex].name);
 
                 int zbrojVremena = player1.Key.GetComponent<PlayerScript>().timeSpentEligible + player1.Value[najboljiPartnerIndex].GetComponent<PlayerScript>().timeSpentEligible;
-
+                Debug.Log(zbrojVremena);
+                Debug.Log("Buraz time req" + timeRequirementForMatch);
                 if (zbrojVremena >= timeRequirementForMatch) {
 
                     //Matchaj ekipu
