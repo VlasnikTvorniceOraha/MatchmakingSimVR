@@ -10,6 +10,8 @@ public class SpawnPlayer : MonoBehaviour
 
     private GameObject playerClone;
 
+    private GameObject visualizerClone;
+
     public Transform NonQueuedPlayers;
 
     public Transform location;
@@ -21,6 +23,8 @@ public class SpawnPlayer : MonoBehaviour
     public TMP_Dropdown igraciDropdown;
 
     public GameObject VisualizerDummy;
+
+    public GameObject Visualizer;
 
 
     // Start is called before the first frame update
@@ -72,7 +76,16 @@ public class SpawnPlayer : MonoBehaviour
 
         //Stvaranje visualizer dummya
 
+        visualizerClone = Instantiate(VisualizerDummy);
 
+        visualizerClone.transform.SetParent(Visualizer.transform, false);
 
+        PlayerScript skripta = playerClone.GetComponent<PlayerScript>();
+
+        Debug.Log(skripta.Elo);
+
+        Debug.Log(skripta.ping);
+        visualizerClone.transform.localPosition = new Vector3(((skripta.Elo - 100) / 40) - 10, ((skripta.ping - 10) / 10) - 5, 0);
+        //visualizerClone.transform.localPosition.Set(((skripta.Elo - 100) / 40) - 10, 0, ((skripta.ping - 10) / 10) - 5);
     }
 }

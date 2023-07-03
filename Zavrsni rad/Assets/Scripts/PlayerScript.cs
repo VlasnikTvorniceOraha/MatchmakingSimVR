@@ -28,7 +28,7 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         Elo = Random.Range(100, 1700);
-        basePing = Random.Range(10, 150);
+        basePing = Random.Range(10, 210);
         ping = basePing;
 
         EloText.text = EloText.text + " " + Elo;
