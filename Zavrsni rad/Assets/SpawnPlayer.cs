@@ -40,6 +40,7 @@ public class SpawnPlayer : MonoBehaviour
         
     }
 
+    
     public void Stvori() 
     {
         //instanciraj igraca
@@ -82,10 +83,9 @@ public class SpawnPlayer : MonoBehaviour
 
         PlayerScript skripta = playerClone.GetComponent<PlayerScript>();
 
-        Debug.Log(skripta.Elo);
-
-        Debug.Log(skripta.ping);
-        visualizerClone.transform.localPosition = new Vector3(((skripta.Elo - 100) / 40) - 10, ((skripta.ping - 10) / 10) - 5, 0);
+        skripta.visDummy = visualizerClone;
+        
+        //visualizerClone.transform.localPosition = new Vector3(((skripta.Elo - 100) / 40) - 10, ((skripta.ping - 10) / 10) - 5, 0);
         //visualizerClone.transform.localPosition.Set(((skripta.Elo - 100) / 40) - 10, 0, ((skripta.ping - 10) / 10) - 5);
     }
 }

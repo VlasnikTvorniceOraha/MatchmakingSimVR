@@ -40,6 +40,9 @@ public class StartQueue : MonoBehaviour
         
     }
 
+    
+
+
     public void StartQ()
     {
         
@@ -139,6 +142,8 @@ public class StartQueue : MonoBehaviour
 
     private int brojPokusaja = 3;
 
+    
+
     void NaiveMatchmaker() {
 
         List<Transform> sviIgraci = new List<Transform>();
@@ -237,6 +242,26 @@ public class StartQueue : MonoBehaviour
     }
 
 
+    public GameObject Visualizer;
+    public void UpdateVis() {
+        
+        foreach (Transform trans in QueuedPlayers.transform) {
+                
+                PlayerScript dummyScript = trans.GetComponent<PlayerScript>();
+
+                dummyScript.visDummy.transform.localPosition = new Vector3(((dummyScript.Elo - 100) / 40) - 10, ((dummyScript.ping - 10) / 10) - 5, 0);
+                
+            }
+
+        foreach (Transform trans in NonQueuedPlayers.transform) {
+                
+                PlayerScript dummyScript = trans.GetComponent<PlayerScript>();
+
+                dummyScript.visDummy.transform.localPosition = new Vector3(((dummyScript.Elo - 100) / 40) - 10, ((dummyScript.ping - 10) / 10) - 5, 0);
+                
+            }
+        
+    }
     
 
     void Matchmaker() 

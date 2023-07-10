@@ -24,6 +24,8 @@ public class PlayerScript : MonoBehaviour
 
     public TMP_Text ime;
 
+    public GameObject visDummy;
+
     // Start is called before the first frame update
     void Start()
     {
