@@ -81,6 +81,10 @@ public class SpawnPlayer : MonoBehaviour
 
         visualizerClone.transform.SetParent(Visualizer.transform, false);
 
+        TMP_Text visCanvasIme = visualizerClone.transform.Find("Canvas").Find("ime").GetComponent<TMP_Text>();
+
+        visCanvasIme.text = playerClone.name;
+
         PlayerScript skripta = playerClone.GetComponent<PlayerScript>();
 
         skripta.visDummy = visualizerClone;

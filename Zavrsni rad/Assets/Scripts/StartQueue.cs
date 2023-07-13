@@ -125,23 +125,37 @@ public class StartQueue : MonoBehaviour
 
     public TMP_Text TipRedaText;
 
+    public GameObject OpcijeReda1v1;
+
+    public GameObject OpcijeRedaNaivni;
+
     public void PromijeniTipReda() {
 
-        if (TipReda == "Normalni") {
-            TipReda = "Naivni";
-            TipRedaText.text = "Naivni";
-        } else {
-            TipReda = "Normalni";
-            TipRedaText.text = "1v1";
+
+        if (!started) {
+            if (TipReda == "Normalni") {
+                TipReda = "Naivni";
+                TipRedaText.text = "Naivni";
+                OpcijeReda1v1.SetActive(false);
+                OpcijeRedaNaivni.SetActive(true);
+            } else {
+                TipReda = "Normalni";
+                TipRedaText.text = "1v1";
+                OpcijeReda1v1.SetActive(true);
+                OpcijeRedaNaivni.SetActive(false);
+            }
+
         }
+
+        
 
     }
 
-    private int NaiveEloDiff = 200;
+    public int NaiveEloDiff = 200;
 
     public int brojIgracaUTimu = 2;
 
-    private int brojPokusaja = 3;
+    public int brojPokusaja = 3;
 
     
 
@@ -202,37 +216,44 @@ public class StartQueue : MonoBehaviour
 
             //dopuni timove sa random igracima i odredi hoce li match proci
 
-            while (odabraniIgraci.Count != 0) {
+            for (int i = 0; i < brojPokusaja; i++) {
 
-                int randomBirac = Random.Range(0, odabraniIgraci.Count);
+                while (odabraniIgraci.Count != 0) {
 
-                PlayerScript skripta = odabraniIgraci[randomBirac].GetComponent<PlayerScript>();
+                    int randomBirac = Random.Range(0, odabraniIgraci.Count);
 
-                if (tim1.Count < brojIgracaUTimu) {
-                    tim1.Add(odabraniIgraci[randomBirac]);
-                    odabraniIgraci.RemoveAt(randomBirac);
-                    tim1Elo += skripta.Elo;
+                    PlayerScript skripta = odabraniIgraci[randomBirac].GetComponent<PlayerScript>();
 
+                    if (tim1.Count < brojIgracaUTimu) {
+                        tim1.Add(odabraniIgraci[randomBirac]);
+                        odabraniIgraci.RemoveAt(randomBirac);
+                        tim1Elo += skripta.Elo;
+
+                    } else {
+                        tim2.Add(odabraniIgraci[randomBirac]);
+                        odabraniIgraci.RemoveAt(randomBirac);
+                        tim2Elo += skripta.Elo;
+
+                    }
+
+                }
+
+                //sada kada imamo timove procijeni njihov average elo i razliku eloa
+                //Debug.Log(tim1Elo);
+                //Debug.Log(tim2Elo);
+                int ukupnaRazlikaElo = Mathf.Abs((tim1Elo / brojIgracaUTimu) - (tim2Elo / brojIgracaUTimu));
+
+                if (ukupnaRazlikaElo < NaiveEloDiff) {
+                    Debug.Log("Mec prihvacen");
+                    MakeMatch(tim1, tim2);
+                    i = brojPokusaja;
                 } else {
-                    tim2.Add(odabraniIgraci[randomBirac]);
-                    odabraniIgraci.RemoveAt(randomBirac);
-                    tim2Elo += skripta.Elo;
-
+                    Debug.Log("Prevelika razlika, mec odbacen");
                 }
 
             }
 
-            //sada kada imamo timove procijeni njihov average elo i razliku eloa
-            //Debug.Log(tim1Elo);
-            //Debug.Log(tim2Elo);
-            int ukupnaRazlikaElo = Mathf.Abs((tim1Elo / brojIgracaUTimu) - (tim2Elo / brojIgracaUTimu));
-
-            if (ukupnaRazlikaElo < NaiveEloDiff) {
-                Debug.Log("Mec prihvacen");
-                MakeMatch(tim1, tim2);
-            } else {
-                Debug.Log("Prevelika razlika, mec odbacen");
-            }
+            
             
 
         } else {
@@ -253,9 +274,42 @@ public class StartQueue : MonoBehaviour
 
                 dummyScript.visDummy.transform.localPosition = new Vector3(((dummyScript.Elo - 100) / 40) - 10, ((dummyScript.basePing - 10) / 10) - 5, 0);
 
-                Transform backdrop = dummyScript.visDummy.transform.Find("DummyBackdrop");
+                if (TipReda == "Normalni") {
 
-                backdrop.localScale = new Vector3((baseEloDiff + dummyScript.vrijeme * EloTimeScale) *  (float)0.11125, (basePingDiff + dummyScript.vrijeme * PingTimeScale) * (float)0.45045, 0);
+
+                    Transform backdrop = dummyScript.visDummy.transform.Find("DummyBackdrop");
+
+                    MeshRenderer backdropRenderer = backdrop.GetComponent<MeshRenderer>();
+                    
+
+                    if (!EligiblePlayersDict.ContainsKey(trans)) {
+                        backdropRenderer.material.color = new Vector4(1f, 0f, 0f, 0.4f);
+
+                    } else {
+
+                        var values = EligiblePlayersDict[trans];
+                        if (values == null) {
+                            backdropRenderer.material.color = new Vector4(1f, 0f, 0f, 0.4f);
+                        } else {
+                            backdropRenderer.material.color = new Vector4(0f, 1f, 0f, 0.4f);
+                        }
+                    }
+
+                    
+
+                    backdrop.localScale = new Vector3((baseEloDiff + dummyScript.vrijeme * EloTimeScale) *  (float)0.11125, (basePingDiff + dummyScript.vrijeme * PingTimeScale) * (float)0.45045, 0);
+
+                } else {
+
+                    Transform backdrop = dummyScript.visDummy.transform.Find("DummyBackdrop");
+
+                    backdrop.localScale = new Vector3(0.45f, 0.45f, 0.45f);
+
+                    MeshRenderer backdropRenderer = backdrop.GetComponent<MeshRenderer>();
+                    backdropRenderer.material.color = new Vector4(1f, 0f, 0f, 0.4f);
+
+                }
+                
                 
             }
 
@@ -265,14 +319,42 @@ public class StartQueue : MonoBehaviour
 
                 dummyScript.visDummy.transform.localPosition = new Vector3(((dummyScript.Elo - 100) / 40) - 10, ((dummyScript.basePing - 10) / 10) - 5, 0);
 
-                Transform backdrop = dummyScript.visDummy.transform.Find("DummyBackdrop");
+                if (TipReda == "Normalni") {
 
-                backdrop.localScale = new Vector3((baseEloDiff + dummyScript.vrijeme * EloTimeScale) *  (float)0.11125, (basePingDiff + dummyScript.vrijeme * PingTimeScale) * (float)0.45045, 0);
+                    Transform backdrop = dummyScript.visDummy.transform.Find("DummyBackdrop");
+
+                    backdrop.localScale = new Vector3((baseEloDiff + dummyScript.vrijeme * EloTimeScale) *  (float)0.11125, (basePingDiff + dummyScript.vrijeme * PingTimeScale) * (float)0.45045, 0);
+
+                    MeshRenderer backdropRenderer = backdrop.GetComponent<MeshRenderer>();
+                    
+
+                    if (!EligiblePlayersDict.ContainsKey(trans)) {
+                        backdropRenderer.material.color = new Vector4(1f, 0f, 0f, 0.4f);
+
+                    } else {
+
+                        var values = EligiblePlayersDict[trans];
+                        if (values == null) {
+                            backdropRenderer.material.color = new Vector4(1f, 0f, 0f, 0.4f);
+                        } else {
+                            backdropRenderer.material.color = new Vector4(0f, 1f, 0f, 0.4f);
+                        }
+                    }
+                } else {
+
+                    Transform backdrop = dummyScript.visDummy.transform.Find("DummyBackdrop");
+
+                    backdrop.localScale = new Vector3((float)0.45, (float)0.45, (float)0.45);
+                    MeshRenderer backdropRenderer = backdrop.GetComponent<MeshRenderer>();
+                    backdropRenderer.material.color = new Vector4(1f, 0f, 0f, 0.4f);
+                }
+                
                 
             }
         
     }
     
+    public GameObject beamOfLight;
 
     void Matchmaker() 
     {
@@ -294,7 +376,7 @@ public class StartQueue : MonoBehaviour
                     bool eligible = true;
 
                     //provjera visokog pinga
-                    if (player1.ping > 150) {
+                    /*if (player1.ping > 150) {
                         Debug.Log(trans1.name + " ima visoko kanjenje obilaska, preusmjeravanje na drugi server");
                         trans1.SetParent(NonQueuedPlayers.transform);
                     }
@@ -302,7 +384,7 @@ public class StartQueue : MonoBehaviour
                     if (player2.ping > 150) {
                         Debug.Log(trans2.name + " ima visoko kanjenje obilaska, preusmjeravanje na drugi server");
                         trans2.SetParent(NonQueuedPlayers.transform);
-                    }
+                    }*/
 
                     //provjera razlike eloa
                     var razlikaElo = Mathf.Abs(player1.Elo - player2.Elo);
@@ -398,8 +480,7 @@ public class StartQueue : MonoBehaviour
                 Debug.Log("Najbolji partner za " + player1.Key.name + " je " + player1.Value[najboljiPartnerIndex].name);
 
                 int zbrojVremena = player1.Key.GetComponent<PlayerScript>().timeSpentEligible + player1.Value[najboljiPartnerIndex].GetComponent<PlayerScript>().timeSpentEligible;
-                Debug.Log(zbrojVremena);
-                Debug.Log("Buraz time req" + timeRequirementForMatch);
+                
                 if (zbrojVremena >= timeRequirementForMatch) {
 
                     //Matchaj ekipu
@@ -407,6 +488,20 @@ public class StartQueue : MonoBehaviour
                     List<Transform> tim2 = new List<Transform>();
                     tim1.Add(player1.Key);
                     tim2.Add(player1.Value[najboljiPartnerIndex]);
+
+                    PlayerScript p1Script = player1.Key.GetComponent<PlayerScript>();
+                    PlayerScript p2Script = player1.Value[najboljiPartnerIndex].GetComponent<PlayerScript>();
+
+                    Destroy(p1Script.visDummy);
+                    Destroy(p2Script.visDummy);
+
+                    GameObject beam1 = Instantiate(beamOfLight);
+                    beam1.transform.SetParent(player1.Key);
+                    beam1.transform.localPosition = new Vector3(1.5f, 1.5f, -1.5f);
+
+                    GameObject beam2 = Instantiate(beamOfLight);
+                    beam2.transform.SetParent(player1.Value[najboljiPartnerIndex]);
+                    beam2.transform.localPosition = new Vector3(1.5f, 1.5f, -1.5f);
 
                     MakeMatch(tim1, tim2);
 
