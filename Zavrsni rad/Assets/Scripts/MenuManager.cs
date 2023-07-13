@@ -46,15 +46,13 @@ public class MenuManager : MonoBehaviour
 
     public void quizBtn()
     {
-        if(StateManager.gameOver)
-        {
-            quizScreen.SetActive(true);
-        }
-        else
-        {
-            mainMenu.SetActive(false);
-            quizForbbidenScreen.SetActive(true);
-        }
+        
+        quizScreen.SetActive(true);
+        
+        
+        mainMenu.SetActive(false);
+            
+        
     }
 
     public void menuBtn()

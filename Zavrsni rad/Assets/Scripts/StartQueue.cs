@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 using System.Linq;
 
+
+
 public class StartQueue : MonoBehaviour
 {
 
@@ -92,9 +94,7 @@ public class StartQueue : MonoBehaviour
 
     public Dictionary<Transform, List<Transform>> EligiblePlayersDict = new Dictionary<Transform, List<Transform>>();
 
-    public GameObject MatchInstance;
-
-    public int timeRequirementForMatch;
+    public int timeRequirementForMatch = 10;
 
     
 
@@ -105,6 +105,7 @@ public class StartQueue : MonoBehaviour
 
         if (TipReda == "Normalni") {
             skriptaInfoScreen.UpdateScreen();
+            UpdateVis();
         }
         
 
@@ -131,7 +132,7 @@ public class StartQueue : MonoBehaviour
             TipRedaText.text = "Naivni";
         } else {
             TipReda = "Normalni";
-            TipRedaText.text = "Normalni";
+            TipRedaText.text = "1v1";
         }
 
     }
@@ -222,12 +223,13 @@ public class StartQueue : MonoBehaviour
             }
 
             //sada kada imamo timove procijeni njihov average elo i razliku eloa
-            Debug.Log(tim1Elo);
-            Debug.Log(tim2Elo);
+            //Debug.Log(tim1Elo);
+            //Debug.Log(tim2Elo);
             int ukupnaRazlikaElo = Mathf.Abs((tim1Elo / brojIgracaUTimu) - (tim2Elo / brojIgracaUTimu));
 
             if (ukupnaRazlikaElo < NaiveEloDiff) {
                 Debug.Log("Mec prihvacen");
+                MakeMatch(tim1, tim2);
             } else {
                 Debug.Log("Prevelika razlika, mec odbacen");
             }
@@ -249,7 +251,11 @@ public class StartQueue : MonoBehaviour
                 
                 PlayerScript dummyScript = trans.GetComponent<PlayerScript>();
 
-                dummyScript.visDummy.transform.localPosition = new Vector3(((dummyScript.Elo - 100) / 40) - 10, ((dummyScript.ping - 10) / 10) - 5, 0);
+                dummyScript.visDummy.transform.localPosition = new Vector3(((dummyScript.Elo - 100) / 40) - 10, ((dummyScript.basePing - 10) / 10) - 5, 0);
+
+                Transform backdrop = dummyScript.visDummy.transform.Find("DummyBackdrop");
+
+                backdrop.localScale = new Vector3((baseEloDiff + dummyScript.vrijeme * EloTimeScale) *  (float)0.11125, (basePingDiff + dummyScript.vrijeme * PingTimeScale) * (float)0.45045, 0);
                 
             }
 
@@ -257,7 +263,11 @@ public class StartQueue : MonoBehaviour
                 
                 PlayerScript dummyScript = trans.GetComponent<PlayerScript>();
 
-                dummyScript.visDummy.transform.localPosition = new Vector3(((dummyScript.Elo - 100) / 40) - 10, ((dummyScript.ping - 10) / 10) - 5, 0);
+                dummyScript.visDummy.transform.localPosition = new Vector3(((dummyScript.Elo - 100) / 40) - 10, ((dummyScript.basePing - 10) / 10) - 5, 0);
+
+                Transform backdrop = dummyScript.visDummy.transform.Find("DummyBackdrop");
+
+                backdrop.localScale = new Vector3((baseEloDiff + dummyScript.vrijeme * EloTimeScale) *  (float)0.11125, (basePingDiff + dummyScript.vrijeme * PingTimeScale) * (float)0.45045, 0);
                 
             }
         
@@ -393,15 +403,16 @@ public class StartQueue : MonoBehaviour
                 if (zbrojVremena >= timeRequirementForMatch) {
 
                     //Matchaj ekipu
-                    player1.Key.SetParent(REDtim.transform);
-                    player1.Key.position = REDtim.transform.position;
+                    List<Transform> tim1 = new List<Transform>();
+                    List<Transform> tim2 = new List<Transform>();
+                    tim1.Add(player1.Key);
+                    tim2.Add(player1.Value[najboljiPartnerIndex]);
 
-                    player1.Value[najboljiPartnerIndex].SetParent(BLUtim.transform);
-                    player1.Value[najboljiPartnerIndex].position = BLUtim.transform.position;
+                    MakeMatch(tim1, tim2);
 
                     
-                    //EligiblePlayersDict.Remove(player1.Value[najboljiPartnerIndex]);
-                    //EligiblePlayersDict.Remove(player1.Key);
+                    EligiblePlayersDict.Remove(player1.Value[najboljiPartnerIndex]);
+                    EligiblePlayersDict.Remove(player1.Key);
 
 
                 } else {
@@ -416,6 +427,44 @@ public class StartQueue : MonoBehaviour
         }
 
     }
+
+
+    public GameObject MatchInstance;
+    public Transform MatchLocation;
+
+    public Transform Matches;
+
+    void MakeMatch(List<Transform> plaviTim, List<Transform> crveniTim) {
+
+        GameObject match = Instantiate(MatchInstance);
+        match.transform.SetParent(Matches, false);
+
+        match.transform.position = MatchLocation.transform.position;
+
+        MatchLocation.localPosition = MatchLocation.localPosition + new Vector3(0, 0, 8);
+
+        Transform BluTim = match.transform.Find("BLU tim");
+        Transform RedTim = match.transform.Find("RED tim");
+
+        foreach (var trans in plaviTim) {
+
+            trans.SetParent(match.transform);
+            trans.position = BluTim.position;
+            trans.rotation = Quaternion.LookRotation(Vector3.back, Vector3.up);
+            BluTim.localPosition = BluTim.localPosition + new Vector3(0, 0, -1);
+
+        }
+
+        foreach (var trans in crveniTim) {
+
+            trans.SetParent(match.transform);
+            trans.position = RedTim.position;
+            RedTim.localPosition = RedTim.localPosition + new Vector3(0, 0, -1);
+
+        }
+
+    }
+
 }
 
 
