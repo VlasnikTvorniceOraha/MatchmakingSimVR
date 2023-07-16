@@ -9,11 +9,10 @@ public class EnableQuizButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (StateManager.gameOver)
-        {
-            _button.onClick.AddListener(EnableQuizScreen);
-            GetComponent<EnableQuizButton>().enabled = false;
-        }
+        
+        _button.onClick.AddListener(EnableQuizScreen);
+        GetComponent<EnableQuizButton>().enabled = false;
+        
     }
 
     private void EnableQuizScreen()

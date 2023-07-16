@@ -63,6 +63,7 @@ public class OpcijeTekst : MonoBehaviour
             qSkripta.baseEloDiff = int.Parse(EloGranica.GetComponent<TMP_InputField>().text);
             Transform granicaElo = self.transform.Find("Pocetna Granica za Elo");
             granicaElo.Find("box").GetComponent<TMP_Text>().text = EloGranica.GetComponent<TMP_InputField>().text;
+            EloGranica.GetComponent<TMP_InputField>().text = "";
 
         }
 
@@ -71,6 +72,7 @@ public class OpcijeTekst : MonoBehaviour
             qSkripta.EloTimeScale = int.Parse(SkalaElo.GetComponent<TMP_InputField>().text);
             Transform skalaElo = self.transform.Find("SkalaElo");
             skalaElo.Find("box").GetComponent<TMP_Text>().text = SkalaElo.GetComponent<TMP_InputField>().text;
+            SkalaElo.GetComponent<TMP_InputField>().text = "";
 
         }
 
@@ -79,6 +81,7 @@ public class OpcijeTekst : MonoBehaviour
             qSkripta.basePingDiff = int.Parse(PingGranica.GetComponent<TMP_InputField>().text);
             Transform granicaPing = self.transform.Find("Pocetna Granica za Ping");
             granicaPing.Find("box").GetComponent<TMP_Text>().text = PingGranica.GetComponent<TMP_InputField>().text;
+            PingGranica.GetComponent<TMP_InputField>().text = "";
 
         }
 
@@ -87,6 +90,7 @@ public class OpcijeTekst : MonoBehaviour
             qSkripta.PingTimeScale = int.Parse(SkalaPing.GetComponent<TMP_InputField>().text);
             Transform skalaPing = self.transform.Find("SkalaPing");
             skalaPing.Find("box").GetComponent<TMP_Text>().text = SkalaPing.GetComponent<TMP_InputField>().text;
+            SkalaPing.GetComponent<TMP_InputField>().text = "";
 
         }
 
@@ -95,6 +99,7 @@ public class OpcijeTekst : MonoBehaviour
             qSkripta.timeRequirementForMatch = int.Parse(TimeReq.GetComponent<TMP_InputField>().text);
             Transform timeReq = self.transform.Find("TimeReq");
             timeReq.Find("box").GetComponent<TMP_Text>().text = TimeReq.GetComponent<TMP_InputField>().text;
+            TimeReq.GetComponent<TMP_InputField>().text = "";
 
         }
 

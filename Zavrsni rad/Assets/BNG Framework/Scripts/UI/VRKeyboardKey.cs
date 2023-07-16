@@ -9,7 +9,7 @@ namespace BNG {
         UnityEngine.UI.Button thisButton;
         UnityEngine.UI.Text thisButtonText;
 
-        VRKeyboard vrKeyboard;
+        VRKeyboard2 vrKeyboard;
 
         public string Keycode;
 
@@ -27,7 +27,7 @@ namespace BNG {
                 thisButton.onClick.AddListener(OnKeyHit);
             }
 
-            vrKeyboard = GetComponentInParent<VRKeyboard>();
+            vrKeyboard = GetComponentInParent<VRKeyboard2>();
         }
 
         public virtual void ToggleShift() {

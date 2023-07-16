@@ -33,6 +33,8 @@ public class ChangeValues : MonoBehaviour
 
             playerScript.EloText.text = "Elo: " + playerScript.Elo;
 
+            EloTextInput.GetComponent<TMP_InputField>().text = "";
+
         }
 
         if (PingTextInput.GetComponent<TMP_InputField>().text != "") {
@@ -40,6 +42,8 @@ public class ChangeValues : MonoBehaviour
             playerScript.basePing = int.Parse(PingTextInput.GetComponent<TMP_InputField>().text);
 
             playerScript.PingText.text = "Ping: " + playerScript.ping;
+
+            PingTextInput.GetComponent<TMP_InputField>().text = "";
 
         }
 

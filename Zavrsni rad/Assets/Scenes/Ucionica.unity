@@ -150,6 +150,18 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!114 &195383925 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3748272535921299006, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+    type: 3}
+  m_PrefabInstance: {fileID: 377037072}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &377037072
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -238,9 +250,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 302247578350765819, guid: 0f7dc52d76d398d49b159cfd324b8c17,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 302247578350765819, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1375905048}
+      objectReference: {fileID: 1638515547}
     - target: {fileID: 302247578350765819, guid: 0f7dc52d76d398d49b159cfd324b8c17,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -259,7 +276,7 @@ PrefabInstance:
     - target: {fileID: 302247578350765819, guid: 0f7dc52d76d398d49b159cfd324b8c17,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 302247578350765819, guid: 0f7dc52d76d398d49b159cfd324b8c17,
         type: 3}
@@ -352,6 +369,11 @@ PrefabInstance:
       propertyPath: m_lineSpacing
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 302247578561175331, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_text
+      value: "Ispunite kviz kako biste ponovili ste\u010Deno znanje."
+      objectReference: {fileID: 0}
     - target: {fileID: 302247578592737494, guid: 0f7dc52d76d398d49b159cfd324b8c17,
         type: 3}
       propertyPath: m_IsActive
@@ -406,10 +428,472 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3748272535391680065, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "Po\u0161tenost me\u010Da"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535432526689, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u017Durni"
+      objectReference: {fileID: 0}
     - target: {fileID: 3748272535466664424, guid: 0f7dc52d76d398d49b159cfd324b8c17,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535504433672, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u0160iroki i uski"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535532929851, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: Correct
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535555252701, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535598418369, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "Automatske i poslu\u017Eiteljske"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535665589377, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: Correct
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535711919553, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "Lista poslu\u017Eitelja"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535765061931, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "Kvalitetu interneta igra\u010Da"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535783054315, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_text
+      value: "Neki od najva\u017Enijih parametara u sustavima za spajanje igra\u010Da
+        su:"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535783054315, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535788273834, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "Pode\u0161avanje ograni\u010Denja za vje\u0161tinu"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535824946916, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535876970124, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "Vje\u0161tina, vrijeme i ka\u0161njenje obilaska"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535921299006, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535921299006, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535921299006, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535921299006, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535921299006, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 507753101}
+    - target: {fileID: 3748272535921299006, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1906160282}
+    - target: {fileID: 3748272535921299006, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1638515547}
+    - target: {fileID: 3748272535921299006, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 479813191}
+    - target: {fileID: 3748272535921299006, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535921299006, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535921299006, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535921299006, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535921299006, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535921299006, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535921299006, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535921299006, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535921299006, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535921299006, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535921299006, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535921299006, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535921299006, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535921299006, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535921299006, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535978974031, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: Correct
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272535996066953, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: Correct
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536025264731, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: Naivni i klasni
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536031569326, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "Pode\u0161avanje ograni\u010Denja za ka\u0161njenje obilaska"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536050916102, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536120063806, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_text
+      value: "Izbaci uljeza: klasni sustav, lista poslu\u017Eitelja, ograni\u010Denje
+        u rasponu vje\u0161tine, procijenjena vrijednost vje\u0161tine igra\u010Da "
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536152430425, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536186950490, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "Procijenjena vrijednost vje\u0161tine igra\u010Da"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536205369790, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: Struktura timova
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536250520618, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "Frustraciju igra\u010Da"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536266594400, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_text
+      value: "Veliki dio ovog simulatora sa\u010Dinjavaju razli\u010Diti algoritmi
+        za grupiranje. Koji algoritmi su implementirani u simulatoru."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536266594400, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536268805266, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_text
+      value: Koja je glavna mana naivnog <i>"quick match"</i> grupiranja?
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536285221086, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_text
+      value: "U redu \u010Dekanja se nalazi par ozbiljnih, napetih igra\u010Da koji
+        \u017Eele iskazati svoju vje\u0161tinu. Koji algoritam grupiranja je prikladan
+        za ovu situaciju?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536287968406, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "Ograni\u010Denja nad parametrima"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536337685528, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536357943045, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: Naivni i 1v1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536382552459, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: Klasni sustav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536471018135, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "Ka\u0161njenje obilaska, lokacija, klasa"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536482758931, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "Ru\u010Dne i strojne"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536555330405, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "Ru\u010Dne i automatske"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536555425373, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: Promijeniti tip algoritma grupiranja
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536591073861, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: Izbrisati algoritam
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536620051929, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: Brzinski i nepovjerljivi
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536640158448, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "Vje\u0161tinu igra\u010Da"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536666746462, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: 1v1 ("<i>competitive</i>")
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536698109809, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "Vje\u0161tina, volja i strpljenje"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536731082783, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "Ru\u010Dni"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536746404778, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "Ru\u010Dni"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536756122798, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "Strojne i poslu\u017Eiteljske"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536774837405, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "Vrijeme, dan u godini, vje\u0161tina"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536779110772, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_text
+      value: "U va\u0161em redu \u010Dekanja se trenutno nalazi 100 igra\u010Da koji
+        \u0161to br\u017Ee tra\u017Ee me\u010D. Koji algoritam grupiranja je prikladan
+        za ovakvu situacijiu?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536779110772, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536815140293, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "Vrijeme provedeno u redu \u010Dekanja"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536826366458, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: Trenutnu situaciju u igrici
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536830177019, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536833543185, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u017Durni"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536861296814, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "Liste poslu\u017Eitelja"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536871121166, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "Broj igra\u010Da u timu"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536891116339, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_text
+      value: "Na \u0161to se dijele sustavi za spajanje igra\u010Da u vi\u0161ekorisni\u010Dkim
+        igrama"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536962144669, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: 1v1 ("<i>competitive</i>")
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272536999250964, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: Correct
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272537000417729, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_text
+      value: "U \"competitive\" me\u010Du se dogodila situacija gdje je vje\u0161tina
+        jednog igra\u010Da procijenjena kao 600 Eloa dok je vje\u0161tina drugog
+        igra\u010Da procijenjena kao 1500 Eloa. \u0160to treba podesiti da se ovakva
+        pogre\u0161ka ne dogodi ponovno?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272537106735387, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: "Ograni\u010Denje u rasponu vje\u0161tine"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272537111411921, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: Naivni ("<i>quick match</i>")
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272537123922431, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: Correct
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272537126213163, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: Naivni ("<i>quick match</i>")
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272537130164366, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272537135003483, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_text
+      value: "\u0160to poku\u0161avamo minimizirati kori\u0161tenjem automatskog
+        algoritma za grupiranje igra\u010Da?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272537139548585, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: Correct
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272537141777846, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: Correct
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272537228672306, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: Automatskom grupiranju
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272537254569207, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: Correct
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3748272537266753293, guid: 0f7dc52d76d398d49b159cfd324b8c17,
         type: 3}
@@ -417,6 +901,26 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3748272537273410536, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272537278382164, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: Correct
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272537289253514, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_text
+      value: "Ru\u010Dni sustavi za grupiranje se oslanjaju na:"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272537327388939, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+        type: 3}
+      propertyPath: m_Text
+      value: Vrijeme potrebno za grupiranje
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748272537446450365, guid: 0f7dc52d76d398d49b159cfd324b8c17,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -711,6 +1215,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &507753101 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5188801366637927240, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+    type: 3}
+  m_PrefabInstance: {fileID: 377037072}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &748359947 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3748272536152430425, guid: 0f7dc52d76d398d49b159cfd324b8c17,
@@ -1163,6 +1673,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18d27cb35dd12b243820a175b4413dff, type: 3}
+--- !u!1 &1906160282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 302247578044800868, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+    type: 3}
+  m_PrefabInstance: {fileID: 377037072}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1924924741 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 302247578350765819, guid: 0f7dc52d76d398d49b159cfd324b8c17,
+    type: 3}
+  m_PrefabInstance: {fileID: 377037072}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1932291546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1185,6 +1713,16 @@ PrefabInstance:
       propertyPath: _landingPage
       value: 
       objectReference: {fileID: 1638515547}
+    - target: {fileID: 572596382358761422, guid: c24ce7106117b614cbd3d30abdcc6923,
+        type: 3}
+      propertyPath: _resetButton
+      value: 
+      objectReference: {fileID: 195383925}
+    - target: {fileID: 572596382358761422, guid: c24ce7106117b614cbd3d30abdcc6923,
+        type: 3}
+      propertyPath: _shuffleButton
+      value: 
+      objectReference: {fileID: 1924924741}
     - target: {fileID: 572596382358761422, guid: c24ce7106117b614cbd3d30abdcc6923,
         type: 3}
       propertyPath: _quizPages.Array.data[0]

@@ -503,6 +503,8 @@ public class StartQueue : MonoBehaviour
                     beam2.transform.SetParent(player1.Value[najboljiPartnerIndex]);
                     beam2.transform.localPosition = new Vector3(1.5f, 1.5f, -1.5f);
 
+                    RemoveFromDropdown(tim1, tim2);
+
                     MakeMatch(tim1, tim2);
 
                     
@@ -548,6 +550,12 @@ public class StartQueue : MonoBehaviour
             trans.rotation = Quaternion.LookRotation(Vector3.back, Vector3.up);
             BluTim.localPosition = BluTim.localPosition + new Vector3(0, 0, -1);
 
+            Transform kapsula = trans.Find("Capsule");
+
+            MeshRenderer renderer = kapsula.GetComponent<MeshRenderer>();
+            renderer.material.color = Color.blue;
+            
+
         }
 
         foreach (var trans in crveniTim) {
@@ -556,10 +564,49 @@ public class StartQueue : MonoBehaviour
             trans.position = RedTim.position;
             RedTim.localPosition = RedTim.localPosition + new Vector3(0, 0, -1);
 
+            Transform kapsula = trans.Find("Capsule");
+            MeshRenderer renderer = kapsula.GetComponent<MeshRenderer>();
+            renderer.material.color = Color.red;
+
         }
 
     }
 
+
+
+    public TMP_Dropdown igraciDropdown;
+
+    void RemoveFromDropdown(List<Transform> plaviTim, List<Transform> crveniTim) {
+
+        foreach (Transform trans in plaviTim) {
+
+ 
+
+            for (int i = 0; i < igraciDropdown.options.Count; i++) {
+
+                if (igraciDropdown.options[i].text == trans.name) {
+                    igraciDropdown.options.RemoveAt(i);
+                }
+            }
+
+        }
+
+        foreach (Transform trans in crveniTim) {
+
+ 
+
+            for (int i = 0; i < igraciDropdown.options.Count; i++) {
+
+                if (igraciDropdown.options[i].text == trans.name) {
+                    igraciDropdown.options.RemoveAt(i);
+                }
+            }
+
+        }
+
+    }
 }
+
+
 
 

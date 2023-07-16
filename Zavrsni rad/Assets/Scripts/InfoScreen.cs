@@ -43,7 +43,7 @@ public class InfoScreen : MonoBehaviour
 
     public void UpdateScreen() {
 
-        Debug.Log("Promijenio vrijednost na " + imeIgraca.captionText.text);
+        //Debug.Log("Promijenio vrijednost na " + imeIgraca.captionText.text);
 
         GameObject trenutniIgrac;
 
