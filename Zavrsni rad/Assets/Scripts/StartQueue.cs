@@ -356,6 +356,8 @@ public class StartQueue : MonoBehaviour
     
     public GameObject beamOfLight;
 
+    public Transform MatchingPlayers;
+
     void Matchmaker() 
     {
         //ELigibility provjera
@@ -489,27 +491,24 @@ public class StartQueue : MonoBehaviour
                     tim1.Add(player1.Key);
                     tim2.Add(player1.Value[najboljiPartnerIndex]);
 
+                    player1.Key.transform.SetParent(MatchingPlayers);
+                    player1.Value[najboljiPartnerIndex].transform.SetParent(MatchingPlayers);
+
                     PlayerScript p1Script = player1.Key.GetComponent<PlayerScript>();
                     PlayerScript p2Script = player1.Value[najboljiPartnerIndex].GetComponent<PlayerScript>();
+
+                    EligiblePlayersDict.Remove(player1.Value[najboljiPartnerIndex]);
+                    EligiblePlayersDict.Remove(player1.Key);
 
                     Destroy(p1Script.visDummy);
                     Destroy(p2Script.visDummy);
 
-                    GameObject beam1 = Instantiate(beamOfLight);
-                    beam1.transform.SetParent(player1.Key);
-                    beam1.transform.localPosition = new Vector3(1.5f, 1.5f, -1.5f);
-
-                    GameObject beam2 = Instantiate(beamOfLight);
-                    beam2.transform.SetParent(player1.Value[najboljiPartnerIndex]);
-                    beam2.transform.localPosition = new Vector3(1.5f, 1.5f, -1.5f);
-
-                    RemoveFromDropdown(tim1, tim2);
-
-                    MakeMatch(tim1, tim2);
+                    StartCoroutine(Animation(tim1, tim2));
 
                     
-                    EligiblePlayersDict.Remove(player1.Value[najboljiPartnerIndex]);
-                    EligiblePlayersDict.Remove(player1.Key);
+                    
+
+                    
 
 
                 } else {
@@ -554,6 +553,8 @@ public class StartQueue : MonoBehaviour
 
             MeshRenderer renderer = kapsula.GetComponent<MeshRenderer>();
             renderer.material.color = Color.blue;
+
+            Destroy(trans.Find("beam").gameObject);
             
 
         }
@@ -568,11 +569,50 @@ public class StartQueue : MonoBehaviour
             MeshRenderer renderer = kapsula.GetComponent<MeshRenderer>();
             renderer.material.color = Color.red;
 
+            Destroy(trans.Find("beam").gameObject);
+
         }
+
+
 
     }
 
+    IEnumerator Animation(List<Transform> plaviTim, List<Transform> crveniTim) {
 
+        //animacija svijetla
+
+        BeamSpawner(plaviTim, crveniTim);
+        RemoveFromDropdown(plaviTim, crveniTim);
+
+        yield return new WaitForSeconds(10);
+
+        //matchmaking
+        MakeMatch(plaviTim, crveniTim);
+
+        
+    }
+
+    void BeamSpawner(List<Transform> plaviTim, List<Transform> crveniTim) {
+
+        foreach(Transform trans in plaviTim) {
+
+            GameObject beam = Instantiate(beamOfLight);
+            beam.transform.SetParent(trans);
+            beam.transform.localPosition = new Vector3(1.5f, 1.5f, -1.5f);
+            beam.name = "beam";
+
+        }
+
+        foreach(Transform trans in crveniTim) {
+
+            GameObject beam = Instantiate(beamOfLight);
+            beam.transform.SetParent(trans);
+            beam.transform.localPosition = new Vector3(1.5f, 1.5f, -1.5f);
+            beam.name = "beam";
+
+
+        }
+    }
 
     public TMP_Dropdown igraciDropdown;
 
