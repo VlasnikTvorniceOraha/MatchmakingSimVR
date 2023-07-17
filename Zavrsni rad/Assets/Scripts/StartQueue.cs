@@ -245,8 +245,24 @@ public class StartQueue : MonoBehaviour
 
                 if (ukupnaRazlikaElo < NaiveEloDiff) {
                     Debug.Log("Mec prihvacen");
-                    MakeMatch(tim1, tim2);
+
+                    foreach (Transform trans in tim1) {
+
+                        trans.SetParent(MatchingPlayers);
+                        PlayerScript skripta = trans.GetComponent<PlayerScript>();
+                        Destroy(skripta.visDummy);
+                    }
+
+                    foreach (Transform trans in tim2) {
+
+                        trans.SetParent(MatchingPlayers);
+                        PlayerScript skripta = trans.GetComponent<PlayerScript>();
+                        Destroy(skripta.visDummy);
+                    
+                    }
                     i = brojPokusaja;
+                    StartCoroutine(Animation(tim1, tim2));
+                    
                 } else {
                     Debug.Log("Prevelika razlika, mec odbacen");
                 }
@@ -530,9 +546,11 @@ public class StartQueue : MonoBehaviour
 
     public Transform Matches;
 
+    private GameObject match;
+
     void MakeMatch(List<Transform> plaviTim, List<Transform> crveniTim) {
 
-        GameObject match = Instantiate(MatchInstance);
+        match = Instantiate(MatchInstance);
         match.transform.SetParent(Matches, false);
 
         match.transform.position = MatchLocation.transform.position;
@@ -541,6 +559,10 @@ public class StartQueue : MonoBehaviour
 
         Transform BluTim = match.transform.Find("BLU tim");
         Transform RedTim = match.transform.Find("RED tim");
+
+        int plaviElo = 0;
+
+        int crveniElo = 0;
 
         foreach (var trans in plaviTim) {
 
@@ -555,6 +577,10 @@ public class StartQueue : MonoBehaviour
             renderer.material.color = Color.blue;
 
             Destroy(trans.Find("beam").gameObject);
+
+            PlayerScript skripta = trans.GetComponent<PlayerScript>();
+
+            plaviElo += skripta.Elo;
             
 
         }
@@ -571,7 +597,21 @@ public class StartQueue : MonoBehaviour
 
             Destroy(trans.Find("beam").gameObject);
 
+            PlayerScript skripta = trans.GetComponent<PlayerScript>();
+
+            crveniElo += skripta.Elo;
+
         }
+
+        TMP_Text CrveniText = match.transform.Find("CrveniTim").GetComponent<TMP_Text>();
+
+        TMP_Text PlaviText = match.transform.Find("PlaviTim").GetComponent<TMP_Text>();
+
+        CrveniText.text = "Prosječni elo crvenog tima je " + (crveniElo / crveniTim.Count);
+
+        PlaviText.text = "Prosječni elo plavog tima je " + (plaviElo / plaviTim.Count);
+
+        
 
 
 
@@ -596,19 +636,35 @@ public class StartQueue : MonoBehaviour
 
         foreach(Transform trans in plaviTim) {
 
+            trans.position = trans.position + new Vector3(0, 3, 0);
+
             GameObject beam = Instantiate(beamOfLight);
             beam.transform.SetParent(trans);
             beam.transform.localPosition = new Vector3(1.5f, 1.5f, -1.5f);
             beam.name = "beam";
+
+            if (TipReda == "Naivni") {
+
+                MeshRenderer beamRenderer = beam.GetComponent<MeshRenderer>();
+                beamRenderer.material.color = Color.blue;
+            }
 
         }
 
         foreach(Transform trans in crveniTim) {
 
+            trans.position = trans.position + new Vector3(0, 3, 0);
+
             GameObject beam = Instantiate(beamOfLight);
             beam.transform.SetParent(trans);
             beam.transform.localPosition = new Vector3(1.5f, 1.5f, -1.5f);
             beam.name = "beam";
+
+            if (TipReda == "Naivni") {
+
+                MeshRenderer beamRenderer = beam.GetComponent<MeshRenderer>();
+                beamRenderer.material.color = Color.red;
+            }
 
 
         }
