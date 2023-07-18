@@ -617,6 +617,8 @@ public class StartQueue : MonoBehaviour
 
     }
 
+    public AudioSource audioSource;
+
     IEnumerator Animation(List<Transform> plaviTim, List<Transform> crveniTim) {
 
         //animacija svijetla
@@ -628,6 +630,10 @@ public class StartQueue : MonoBehaviour
 
         //matchmaking
         MakeMatch(plaviTim, crveniTim);
+
+        Sound soundSkripta = audioSource.GetComponent<Sound>();
+
+        soundSkripta.playSound3();
 
         
     }
@@ -665,6 +671,11 @@ public class StartQueue : MonoBehaviour
                 MeshRenderer beamRenderer = beam.GetComponent<MeshRenderer>();
                 beamRenderer.material.color = Color.red;
             }
+
+        
+        Sound soundSkripta = audioSource.GetComponent<Sound>();
+
+        soundSkripta.playSound2();
 
 
         }
